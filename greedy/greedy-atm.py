@@ -4,7 +4,7 @@ lists.sort()
 
 total = 0
 acc = 0
-for item in lists[:i]:
+for item in lists:
     total += item
     acc += total
 
