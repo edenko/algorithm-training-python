@@ -16,7 +16,7 @@ for _ in range(m):
     graph[a].append(b)
     graph[b].append(a)
 
-for node in range(1, n + 1):
+for node in range(1, n + 1): # 이거 중요함! 연결 안된 애들은 아예 없으니까 
     if node not in visited:
         count += 1
         dfs(node)

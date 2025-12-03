@@ -1,10 +1,6 @@
-# input, 방향키, visited
-# dfs
-# 탐색 (2중for)
-# 범위 + visited 조건 확인
-
 n = int(input())
 grid = [list(map(int, input().split())) for _ in range(n)]
+count = 0
 
 visited = [[False] * n for _ in range(n)]
 
@@ -21,14 +17,12 @@ def dfs(x, y):
             if grid[nx][ny] == 1 and not visited[nx][ny]:
                 dfs(nx, ny)
 
-count = 0
-
 for i in range(n):
     for j in range(n):
-
+        
         if grid[i][j] == 1 and not visited[i][j]:
-            dfs(i, j)
             count += 1
+            dfs(i, j)
+
 
 print(count)
-
