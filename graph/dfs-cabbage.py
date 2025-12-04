@@ -1,3 +1,10 @@
+# 5 5
+# 1 1
+# 1 2
+# 2 2
+# 3 4
+# 4 4
+
 m, n = map(int, input().split())
 grid = [[0] * m for _ in range(n)]
 checked = [[False] * m for _ in range(n)]

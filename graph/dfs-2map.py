@@ -1,3 +1,10 @@
+# 5
+# 1 1 0 0 0
+# 1 0 0 1 1
+# 0 0 0 1 0
+# 1 1 0 0 1
+# 0 0 0 1 1
+
 # input, 방향키, visited
 # dfs
 # 탐색 (2중for)
@@ -30,5 +37,4 @@ for i in range(n):
             dfs(i, j)
             count += 1
 
-print(count)
-
+print(count) # 4
