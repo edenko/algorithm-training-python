@@ -30,6 +30,9 @@ def bfs():
     while q:
         x, y = q.popleft()
 
+        if x == m - 1 and y == n - 1:
+            return dist[n - 1][m - 1]
+
         for i in range(4):
             nx = x + dx[i]
             ny = y + dy[i]
