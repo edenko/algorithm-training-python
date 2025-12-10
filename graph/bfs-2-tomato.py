@@ -50,4 +50,4 @@ def bfs():
 
     return max(map(max, dist))
 
-print(bfs())
+print(bfs()) # 8
