@@ -18,4 +18,4 @@ for coin in coins:
     for i in range(coin, k + 1):
         dp[i] = min(dp[i], dp[i - coin] + 1)
 
-print(dp[k])
+print(dp[k]) # 2
