@@ -7,6 +7,9 @@
 # 0111110
 # 0111000
 
+## 3 7 8 9
+
+
 # 1. input, visited, 좌표 
 # 2. dfs
 # 3. 탐색
@@ -27,24 +30,23 @@ dy = [0, 0, -1, 1]
 def dfs(x, y):
     global house
     house += 1
-    visited[x][y] = True
+    visited[y][x] = True
 
     for i in range(4):
         nx = x + dx[i]
         ny = y + dy[i]
         if 0 <= nx < n and 0 <= ny < n:
-            if grid[nx][ny] == 1 and not visited[nx][ny]:
+            if grid[ny][nx] == 1 and not visited[ny][nx]:
                 dfs(nx, ny)
 
 result = []
 
-for i in range(n):
-    for j in range(n):
-        if grid[i][j] == 1 and not visited[i][j]:
+for y in range(n):
+    for x in range(n):
+        if grid[y][x] == 1 and not visited[y][x]:
             house = 0
-            dfs(i, j)
+            dfs(x, y)
             result.append(house)
-
 
 print(len(result))
 for node in sorted(result):

@@ -1,3 +1,12 @@
+# 연결 요소(connected component) 개수
+# 6 4
+# 1 2
+# 2 3
+# 4 5
+# 5 6
+
+## 2
+
 from collections import defaultdict
 
 graph = defaultdict(list)
