@@ -1,13 +1,15 @@
+# BOJ 4179 — 불(Fire)
+# 두 개의 BFS를 분리해서 실행
+# 불이 먼저 퍼지고 그 다음에 사람이 이동해야 함 -> dist가 두개
+# 불은 퍼질 때의 시간을 기록. 숫자가 낮을수록 먼저 닿은거임.
+
 # 4 4
 # ####
 # #JF#
 # #..#
 # #..#
 
-# BOJ 4179 — 불(Fire)
-# 두 개의 BFS를 분리해서 실행
-# 불이 먼저 퍼지고 그 다음에 사람이 이동해야 함 -> dist가 두개
-# 불은 퍼질 때의 시간을 기록. 숫자가 낮을수록 먼저 닿은거임.
+## 3
 
 from collections import deque
 
@@ -57,7 +59,7 @@ while qJ:
 
         if 0 <= nx < m and 0 <= ny < n:
             if grid[ny][nx] == '.' and distJ[ny][nx] == -1:
-                if distFire[ny][nx] != -1 and distFire[ny][nx] <= distJ[y][x] + 1:
+                if distFire[ny][nx] != -1 and distFire[ny][nx] <= distJ[y][x] + 1: ## 이게 핵심 !
                     continue
                     
                 distJ[ny][nx] = distJ[y][x] + 1
