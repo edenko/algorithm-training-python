@@ -1,3 +1,5 @@
+# 배열에서 K번째로 작은 수 찾기
+
 import heapq
 
 heap = []

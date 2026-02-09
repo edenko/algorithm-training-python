@@ -1,23 +1,37 @@
-import heapq
+import heapq, sys
 
-def solution(jobs):
-    answer = 0
-    cnt = 0
+input = sys.stdin.readline
+INF = float('inf')
+
+def dijkstra(start, graph, n):
+    dist = [INF] * (n + 1)
+    dist[start] = 0
+
     pq = []
-    arr = []
-    
-    for i in range(len(jobs)):
-        s, l = jobs[i]
-        heapq.heappush(pq, (l, s, i))
-    
-    while pq:
-        s, l, i = heapq.heappop(pq)
-        cnt += s
-        answer += (cnt - l)
+    heapq.heappush(pq, (0, start))
 
-    return answer // len(jobs)
-    
-sol = solution(
-    jobs = [[0, 3], [1, 9], [3, 5]]
-)
-print(sol) # 8
+    while pq:
+        cost, now = heapq.heappop(pq)
+
+        if cost > dist[now]:
+            continue
+
+        for nx, w in graph[now]:
+            new_cost = cost + w
+
+            if new_cost < dist[nx]:
+                dist[nx] = new_cost
+                heapq.heappush(pq, (new_cost, nx))
+
+    return dist
+
+n, m = map(int, input().split())
+graph = [[] for _ in range(n + 1)]
+
+for _ in range(m):
+    a, b, w = map(int, input().split())
+    graph[a].append((b, w))
+
+start = int(input())
+
+dist = dijkstra(start, graph, n)
