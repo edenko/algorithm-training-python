@@ -33,3 +33,47 @@
 # 2 3
 
 # -1
+
+import heapq
+
+n, m = map(int, input().split())
+graph = [[] for _ in range(n + 1)]
+
+for _ in range(m):
+  a, b, w = map(int, input().split())
+  graph[a].append((b, w))
+  graph[b].append((a, w))
+
+lv1, lv2 = map(int, input().split())
+INF = float('inf')
+
+def dijkstra(start):
+  dist = [INF] * (n + 1)
+  dist[start] = 0
+
+  heap = []
+  heapq.heappush(heap, (0, start))
+
+  while heap:
+    cost, node = heapq.heappop(heap)
+
+    if cost > dist[node]:
+      continue
+
+    for next_node, weight in graph[node]:
+      new_cost = cost + weight
+
+      if new_cost < dist[next_node]:
+        dist[next_node] = new_cost
+        heapq.heappush(heap, (new_cost, next_node))
+
+  return dist
+
+path = dijkstra(1)
+path_v1 = dijkstra(lv1)
+path_v2 = dijkstra(lv2)
+
+route1 = path[lv1] + path_v1[lv2] + path_v2[n]
+route2 = path[lv2] + path_v2[lv1] + path_v1[n]
+result = min(route1, route2)
+print(-1 if result == INF else result)
