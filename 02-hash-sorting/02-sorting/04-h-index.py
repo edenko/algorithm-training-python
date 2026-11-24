@@ -7,3 +7,20 @@
 # citations = [3, 0, 6, 1, 5]
 
 # 3
+
+def solution(citations):
+    citations.sort(reverse=True)
+    h = 0
+        
+    idx = 1
+    for c in citations:
+        if c >= idx:
+            h = idx
+        else:
+            break
+        idx += 1
+            
+    return h
+
+citations = [3, 0, 6, 1, 5]
+print(solution(citations))

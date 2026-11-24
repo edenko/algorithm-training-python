@@ -20,3 +20,33 @@
 # ]
 
 # ["keyboard", "mouse", "banana", "orange", "novel"]
+
+def solution(products):
+    answer = []
+    categories = {}
+    groups = {}
+
+    for cate, name, sales in products:
+      categories[cate] = categories.get(cate, 0) + sales
+      temp = groups.get(cate, [])
+      temp.append((name, sales))
+      groups[cate] = temp
+
+    categories = sorted(categories, key=lambda x: (-categories[x], x))
+
+    for category in categories:
+      group = sorted(groups[category], key=lambda x: (-x[1], x[0]))[:2]
+      for name, _ in group:
+         answer.append(name)
+        
+    return answer
+
+products = [
+  ("food", "apple", 100),
+  ("tech", "mouse", 300),
+  ("food", "banana", 200),
+  ("tech", "keyboard", 300),
+  ("food", "orange", 150),
+  ("book", "novel", 250)
+]
+print(solution(products))
