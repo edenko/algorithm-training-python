@@ -1,29 +1,20 @@
 import heapq
 
-n, m = map(int, input().split())
-jewels = []
-bags = []
-answer = 0
+n = int(input())
+array = []
+rooms = []
 
-for i in range(n):
-  weight, price = map(int, input().split())
-  jewels.append((weight, price))
-jewels.sort()
+for _ in range(n):
+  a, b = map(int, input().split())
+  array.append((a, b))
 
-for _ in range(m):
-  bags.append(int(input()))
-bags.sort()
+array = sorted(array, key=lambda x: (x[0], x[1]))
 
-heap = []
-idx = 0
+for start, end, time in array:
 
-for bag in bags:
-  while idx < n and jewels[idx][0] <= bag:
-    weight, price = jewels[idx]
-    heapq.heappush(heap, -price)
-    idx += 1
+  if rooms and rooms[0] <= start:
+    heapq.heappop(rooms)
 
-  if heap:
-    answer += -heapq.heappop(heap)
+  heapq.heappush(rooms, end)
 
-print(answer)
+print(len(rooms))
