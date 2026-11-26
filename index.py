@@ -1,20 +1,14 @@
-import heapq
-
-n = int(input())
-array = []
-rooms = []
-
+n, k = map(int, input().split())
+coins = []
 for _ in range(n):
-  a, b = map(int, input().split())
-  array.append((a, b))
+  coins.append(int(input()))
 
-array = sorted(array, key=lambda x: (x[0], x[1]))
+dp = [0] * (k + 1)
+dp[0] = 1
 
-for start, end, time in array:
+for coin in coins:
+  for i in range(1, k + 1):
+    if i >= coin:
+      dp[i] += dp[i - coin]
 
-  if rooms and rooms[0] <= start:
-    heapq.heappop(rooms)
-
-  heapq.heappush(rooms, end)
-
-print(len(rooms))
+print(dp[k])
