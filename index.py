@@ -1,14 +1,24 @@
-n, k = map(int, input().split())
-coins = []
-for _ in range(n):
-  coins.append(int(input()))
+n, x = map(int, input().split())
+nums = list(map(int, input().split()))
 
-dp = [0] * (k + 1)
-dp[0] = 1
+total = 0
+answer = 0
+count = 1
 
-for coin in coins:
-  for i in range(1, k + 1):
-    if i >= coin:
-      dp[i] += dp[i - coin]
+for i in range(x):
+  total += nums[i]
 
-print(dp[k])
+for i in range(x, n):
+  total += nums[i] - nums[i - x]
+
+  if total > answer:
+    answer = total
+    count = 1
+  elif total == answer:
+    count += 1
+
+if answer == 0:
+  print('SAD')
+else:
+  print(answer)
+  print(count)
